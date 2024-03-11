@@ -9,8 +9,13 @@
     "start": "npm run compile && node dist/",
     "coverage": "nyc --reporter=lcov npm run report",
     "compile": "shx rm -rf dist/ && tsc && npm run post:compile",
-    "post:compile": "tscpaths -p tsconfig.json -s ./src -o ./dist --silent"
+    "post:compile": "tscpaths -p tsconfig.json -s ./src -o ./dist --silent",
+    "add-build": "git add dist"
   },
+  "pre-commit": [
+    "build",
+    "add-build"
+  ],
   "repository": {
     "type": "git"
   },
